@@ -6,7 +6,7 @@ namespace MiniFarm
     {
         protected override void BuildServices(IServiceContainer serviceContainer)
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }
