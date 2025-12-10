@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 namespace MiniFarm.GridEditor
 {
@@ -50,6 +51,31 @@ namespace MiniFarm.GridEditor
                     cellTypes[x, y] = Map.GetCell(new Vector2Int(x, y)).CellType;
 
             return cellTypes;
+        }
+
+        private const string PATH_PREFABS_FRUIT = "Assets/_Project/Prefabs/Fruit";
+        private const string NAME_FRUIT_LOAD = "t:prefab";
+
+        public void ChangeFruit(FruitType fruitType, FruitCell fruitCell)
+        {
+            if(fruitCell.fruit == null)
+                if (fruitType == fruitCell.fruit.fruitType) return;
+
+            Object.DestroyImmediate(fruitCell.fruit.gameObject);
+
+            string[] guids = AssetDatabase.FindAssets(NAME_FRUIT_LOAD, new[] { PATH_PREFABS_FRUIT });
+            foreach (string guid in guids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                Fruit prefab = AssetDatabase.LoadAssetAtPath<Fruit>(path);
+
+                if (prefab != null && prefab.fruitType == fruitType)
+                {
+                    Fruit newFruit = Object.Instantiate(prefab, fruitCell.transform);
+                    fruitCell.SetFruit(newFruit);
+                    return;
+                }
+            }
         }
 
         private void CreateNewGrid(CellType[,] cellTypes)

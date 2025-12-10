@@ -86,28 +86,6 @@ namespace MiniFarm.GridEditor
 
             return platforms;
         }
-
-        /*private CellType[,] ConvertGridMood()
-        {
-            CellType[,] platfromTypes = ConvertPreviewGridToCellTypes();
-            int originalWidth = platfromTypes.GetLength(0);
-            int originalHeight = platfromTypes.GetLength(1);
-
-            int width = originalWidth + 2;
-            int height = originalHeight + 2;
-            CellType[,] gridPlatforms = new CellType[width, height];
-
-            for (int x = 0; x < width; x++)
-                for (int y = 0; y < height; y++)
-                    gridPlatforms[x, y] = CellType.Empty;
-
-            for (int x = 0; x < originalWidth; x++)
-                for (int y = 0; y < originalHeight; y++)
-                    gridPlatforms[x + 1, y + 1] = platfromTypes[x, y];
-
-            return gridPlatforms;
-        }*/
-
         private void ConverGridMapToPreviewGrid()
         {
             if (_gridCreator.Map == null) return;
@@ -178,10 +156,10 @@ namespace MiniFarm.GridEditor
                     EditorGUI.DrawRect(rect, GetCellColor(_linesX[x].lineY[y]));
 
                     _linesX[x].lineY[y] = (CellType)EditorGUILayout.EnumPopup(_linesX[x].lineY[y]);
-                    if(_gridCreator.Map != null && _gridCreator.Map.GetSize() == new Vector2Int(_linesX.Length, _linesX[x].lineY.Length))
+                    if(_gridCreator.Map != null)
                     {
                         Cell cell = _gridCreator.Map.GetCells()[x].Values[y];
-                        EditorGUILayout.ObjectField(cell.gameObject, typeof(Cell), true);
+                        CustomField(cell);
                     }
 
                     EditorGUILayout.EndVertical();
@@ -190,6 +168,17 @@ namespace MiniFarm.GridEditor
 
                 EditorGUILayout.EndHorizontal();
             }
+        }
+
+        private void CustomField(Cell cell)
+        {
+            if(cell as FruitCell)
+            {
+                FruitCell fruitCell = cell as FruitCell;
+                FruitType newType = (FruitType)EditorGUILayout.EnumPopup(fruitCell.fruit.fruitType);
+                 _gridCreator.ChangeFruit(newType, fruitCell);
+            }
+
         }
 
         private Color GetCellColor(CellType platformType)
