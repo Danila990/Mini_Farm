@@ -11767,7 +11767,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &659296049
 Transform:
   m_ObjectHideFlags: 0
@@ -37412,18 +37412,6 @@ RectTransform:
   m_AnchoredPosition: {x: 367.742, y: -125.24002}
   m_SizeDelta: {x: 205.16135, y: 190.48004}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &103693809692580010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476057122076024152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27eeab5e6f9161f4aa8581484992c1d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &104096098116445607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37953,7 +37941,6 @@ GameObject:
   - component: {fileID: 4737745386976280076}
   - component: {fileID: 8703933566366964168}
   - component: {fileID: 6047320886227609612}
-  - component: {fileID: 103693809692580010}
   - component: {fileID: 4257129377496656662}
   m_Layer: 0
   m_Name: TapToStart_Button
@@ -40033,14 +40020,13 @@ GameObject:
   - component: {fileID: 2547302161490643994}
   - component: {fileID: 7416680868652527316}
   - component: {fileID: 9131623549340895488}
-  - component: {fileID: 7676523867496791535}
   m_Layer: 0
   m_Name: Game_TapStart_Page
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5751845713998634280
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40772,18 +40758,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &7676523867496791535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5719629692526655592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 967360bd095215f4eae34ed83c040d45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &7783704196315357203
 CanvasRenderer:
   m_ObjectHideFlags: 0
