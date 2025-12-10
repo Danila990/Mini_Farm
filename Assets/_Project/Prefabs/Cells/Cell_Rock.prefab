@@ -98,6 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3126210117099770806}
+  - component: {fileID: 7818361381782625351}
   m_Layer: 0
   m_Name: Cell_Rock
   m_TagString: Untagged
@@ -119,5 +120,83 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4759841397246351900}
+  - {fileID: 1925330376587651353}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7818361381782625351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4147530948191819076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7792394010d6d243a0364c1140b3f9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.RockCell
+  _cellType: 5
+  _isLoked: 0
+  _cellIndex: {x: 0, y: 0}
+--- !u!1001 &2127028114191639980
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3126210117099770806}
+    m_Modifications:
+    - target: {fileID: 521464324056665269, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.036146667
+      objectReference: {fileID: 0}
+    - target: {fileID: 521464324056665269, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.022826668
+      objectReference: {fileID: 0}
+    - target: {fileID: 521464324056665269, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.03914667
+      objectReference: {fileID: 0}
+    - target: {fileID: 521464324056665269, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 521464324056665269, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 521464324056665269, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 521464324056665269, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 521464324056665269, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 521464324056665269, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 521464324056665269, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8282556996540509677, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
+      propertyPath: m_Name
+      value: Rock_1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
+--- !u!4 &1925330376587651353 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 521464324056665269, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
+  m_PrefabInstance: {fileID: 2127028114191639980}
+  m_PrefabAsset: {fileID: 0}

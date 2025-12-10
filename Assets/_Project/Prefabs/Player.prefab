@@ -742,6 +742,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7776436135084028931}
+  - component: {fileID: 1117632250153323497}
+  - component: {fileID: 7426942664618347716}
+  - component: {fileID: 7430617912748247361}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -766,6 +769,53 @@ Transform:
   - {fileID: 6078258613016149139}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1117632250153323497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7847953846555376057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a3abfc2d833ec54caddd3cdf0d24f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.Player
+  _virtualCamera: {fileID: 427132631907313506}
+--- !u!114 &7426942664618347716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7847953846555376057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a882653d5f7a7384993e6cfd42ca5b1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.PlayerGridMover
+  _rotateDuration: 0.5
+  _jumpDuration: 0.5
+  _rotateTarget: {fileID: 6078258613016149139}
+--- !u!114 &7430617912748247361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7847953846555376057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f67e204e5e69aa429f80e2ad886b93c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.PlayerAnimator
+  _wheels:
+  - {fileID: 4750231230745199509}
+  - {fileID: 816086915424869328}
+  - {fileID: 6919693974934845076}
+  - {fileID: 6405805577282042957}
+  _rotationSpeed: 250
+  _whellEffect: {fileID: 634553309854105277}
 --- !u!1001 &1278256366181736170
 PrefabInstance:
   m_ObjectHideFlags: 0

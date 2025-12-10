@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 525353719482941455}
   - component: {fileID: 8788061256664760759}
   - component: {fileID: 1120672457463444015}
+  - component: {fileID: 5346632088223574390}
   m_Layer: 0
   m_Name: Banana
   m_TagString: Untagged
@@ -89,3 +90,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5346632088223574390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4408028089028875953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea02ca94cced0d4aa41246f1ac359e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.Fruit
+  _deactivateEffect: {fileID: 198157190901592544, guid: a1ff4ad1c15edf34290f004078ae88bd, type: 3}
+  _targety: 2
+  _duraction: 0.5
+  <fruitType>k__BackingField: 0

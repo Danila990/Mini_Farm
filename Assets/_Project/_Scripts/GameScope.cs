@@ -1,12 +1,53 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace MiniFarm
 {
     public class GameScope : ServiceScore
     {
-        protected override void BuildServices(IServiceContainer serviceContainer)
+        [SerializeField] private GridMap _gridMap;
+
+        [Header("Player")]
+        [SerializeField] private UserInput _userInput;
+        [SerializeField] private Player _player;
+        [SerializeField] private PlayerDirectionArrow _playerArrow;
+
+
+        private void OnValidate()
         {
-            
+            _gridMap ??= FindAnyObjectByType<GridMap>();
+        }
+
+        protected override void BuildServices(IServiceContainer container)
+        {
+            BuildGameManager(container);
+            BuildGrid(container);
+            BuildPlayerArrow(container);
+        }
+
+        private void BuildPlayerArrow(IServiceContainer container)
+        {
+            IInputService inputService = _userInput switch
+            {
+                _ or UserInput.Mobile => _parrentScope.AddComponent<KeybordInput>(),
+            };
+
+            _player = Instantiate(_player);
+            _playerArrow = Instantiate(_playerArrow);
+
+            container.Set<IInputService>(inputService).Set(_player).Set(_playerArrow);
+        }
+
+        private void BuildGrid(IServiceContainer container)
+        {
+            container.Set<IGridMap>(_gridMap);
+        }
+
+        private void BuildGameManager(IServiceContainer container)
+        {
+            GameManager gameManager = _parrentScope.AddComponent<GameManager>();
+            container.Set(gameManager);
         }
     }
 }
