@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 3126210117099770806}
   - component: {fileID: 7818361381782625351}
   m_Layer: 0
-  m_Name: Cell_Rock
+  m_Name: Cell_Trap
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -135,9 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7792394010d6d243a0364c1140b3f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.RockCell
-  _cellType: 5
-  _isLoked: 0
   _cellIndex: {x: 0, y: 0}
+  <trap>k__BackingField: {fileID: 2920951671103668295}
 --- !u!1001 &2127028114191639980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -200,3 +199,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 521464324056665269, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
   m_PrefabInstance: {fileID: 2127028114191639980}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2920951671103668295 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -5400388947763354133, guid: 20e904f74d05b64409103fe4e43728c2, type: 3}
+  m_PrefabInstance: {fileID: 2127028114191639980}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06b1bdec0d6a164da503f67518cc115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.Trap

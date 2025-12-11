@@ -1,11 +1,12 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace MiniFarm
 {
-    public class FruitCell : Cell
+    public class FruitCell : CellBase
     {
         [field: SerializeField] public Fruit fruit { get; private set; }
+
+        public override CellType CellType => CellType.Fruit;
 
         public void SetFruit(Fruit fruit) => this.fruit = fruit;
 

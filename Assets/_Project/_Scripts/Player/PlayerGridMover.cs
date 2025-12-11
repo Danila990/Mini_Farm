@@ -36,7 +36,7 @@ namespace MiniFarm
         {
             StopAllCoroutines();
             _rotator.ResetRotate();
-            _spawnCell = _gridMap.FindCell<Cell>(CellType.Player);
+            _spawnCell = _gridMap.FindCell<CellBase>(CellType.Player);
             _playerIndex = _spawnCell.CellIndex;
             transform.position = _spawnCell.MovePos;
         }

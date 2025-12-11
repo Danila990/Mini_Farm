@@ -5,11 +5,11 @@ namespace MiniFarm
 {
     public class GridMap : MonoBehaviour, IGridMap
     {
-        [SerializeField] private MultiArray<Cell> _array = new MultiArray<Cell>();
+        [SerializeField] private MultiArray<CellBase> _array = new MultiArray<CellBase>();
 
-        public ArrayLine<Cell>[] GetCells() => _array.GetAll();
+        public ArrayLine<CellBase>[] GetCells() => _array.GetAll();
 
-        public void SetupMap(ArrayLine<Cell>[] values) => _array.Set(values);
+        public void SetupMap(ArrayLine<CellBase>[] values) => _array.Set(values);
 
         public Vector2Int GetSize() => _array.SizeGrid;
 
@@ -36,7 +36,7 @@ namespace MiniFarm
             return true;
         }
 
-        public T FindCell<T>(CellType cellType) where T : Cell
+        public T FindCell<T>(CellType cellType) where T : CellBase
         {
             return _array.GetAll()
                 .SelectMany(line => line.Values)
@@ -45,7 +45,7 @@ namespace MiniFarm
                 .FirstOrDefault();
         }
 
-        public T[] FindCells<T>(CellType cellType) where T : Cell
+        public T[] FindCells<T>(CellType cellType) where T : CellBase
         {
             return _array.GetAll()
                 .SelectMany(line => line.Values)

@@ -110,7 +110,7 @@ namespace MiniFarm.GridEditor
                         lineY = new CellType[3]{ CellType.Player, CellType.Base, CellType.Fruit }
                     },
                     new ConstructorLine(){
-                        lineY = new CellType[3]{ CellType.Empty, CellType.Fruit, CellType.Rock }
+                        lineY = new CellType[3]{ CellType.Empty, CellType.Fruit, CellType.Trap }
                     },
                     new ConstructorLine(){
                         lineY = new CellType[3]{ CellType.Fruit, CellType.Base, CellType.Finish }
@@ -156,9 +156,9 @@ namespace MiniFarm.GridEditor
                     EditorGUI.DrawRect(rect, GetCellColor(_linesX[x].lineY[y]));
 
                     _linesX[x].lineY[y] = (CellType)EditorGUILayout.EnumPopup(_linesX[x].lineY[y]);
-                    if(_gridCreator.Map != null)
+                    if(_gridCreator.Map != null && _gridCreator.Map.GetSize().x == _linesX.Length && _gridCreator.Map.GetSize().y == _linesX[x].lineY.Length)
                     {
-                        Cell cell = _gridCreator.Map.GetCells()[x].Values[y];
+                        CellBase cell = _gridCreator.Map.GetCells()[x].Values[y];
                         CustomField(cell);
                     }
 
@@ -170,13 +170,19 @@ namespace MiniFarm.GridEditor
             }
         }
 
-        private void CustomField(Cell cell)
+        private void CustomField(CellBase cell)
         {
             if(cell as FruitCell)
             {
                 FruitCell fruitCell = cell as FruitCell;
                 FruitType newType = (FruitType)EditorGUILayout.EnumPopup(fruitCell.fruit.fruitType);
                  _gridCreator.ChangeFruit(newType, fruitCell);
+            }
+            else if(cell as TrapCell)
+            {
+                TrapCell trapCell = cell as TrapCell;
+                TrapType newType = (TrapType)EditorGUILayout.EnumPopup(trapCell.trap.trapType);
+                _gridCreator.ChangeTrap(newType, trapCell);
             }
 
         }
@@ -190,7 +196,7 @@ namespace MiniFarm.GridEditor
                 CellType.Empty => Color.black,
                 CellType.Finish => Color.blue,
                 CellType.Fruit => Color.yellow,
-                CellType.Rock => Color.red,
+                CellType.Trap => Color.red,
                 _ => Color.gray,
             };
         }

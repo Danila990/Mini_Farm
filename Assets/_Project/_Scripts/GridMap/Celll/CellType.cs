@@ -7,6 +7,6 @@
         Finish = 2,
         Empty = 3,
         Fruit = 4,
-        Rock = 5,
+        Trap = 5,
     }
 }

@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 namespace MiniFarm.GridEditor
 {
     [System.Serializable]
-    public class GridCreator : MoodArray<Cell>
+    public class GridCreator : MoodArray<CellBase>
     {
         private const string PATH_PREFABS_CELL = "Assets/_Project/Prefabs/Cells";
         private const string NAME_CELL_LOAD = "Cell t:prefab";
@@ -53,12 +53,12 @@ namespace MiniFarm.GridEditor
             return cellTypes;
         }
 
-        private const string PATH_PREFABS_FRUIT = "Assets/_Project/Prefabs/Fruit";
+        private const string PATH_PREFABS_FRUIT = "Assets/_Project/Prefabs/Fruits";
         private const string NAME_FRUIT_LOAD = "t:prefab";
 
         public void ChangeFruit(FruitType fruitType, FruitCell fruitCell)
         {
-            if(fruitCell.fruit == null)
+            if(fruitCell.fruit != null)
                 if (fruitType == fruitCell.fruit.fruitType) return;
 
             Object.DestroyImmediate(fruitCell.fruit.gameObject);
@@ -78,6 +78,32 @@ namespace MiniFarm.GridEditor
             }
         }
 
+        private const string PATH_PREFABS_TRAP = "Assets/_Project/Prefabs/Traps";
+        private const string NAME_TRAP_LOAD = "t:prefab";
+
+        public void ChangeTrap(TrapType trapType, TrapCell trapCell)
+        {
+            if (trapCell.trap != null)
+                if (trapType == trapCell.trap.trapType) return;
+
+            Object.DestroyImmediate(trapCell.trap.gameObject);
+
+            string[] guids = AssetDatabase.FindAssets(NAME_TRAP_LOAD, new[] { PATH_PREFABS_TRAP });
+            foreach (string guid in guids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                Trap prefab = AssetDatabase.LoadAssetAtPath<Trap>(path);
+
+                if (prefab != null && prefab.trapType == trapType)
+                {
+                    Trap newFruit = Object.Instantiate(prefab, trapCell.transform);
+                    trapCell.SetTrap(newFruit);
+                    return;
+                }
+            }
+        }
+
+
         private void CreateNewGrid(CellType[,] cellTypes)
         {
             Vector2Int gridSize = new Vector2Int(cellTypes.GetLength(0), cellTypes.GetLength(1));
@@ -85,15 +111,15 @@ namespace MiniFarm.GridEditor
 
             Map = new GameObject($"GridMap: X-{gridSize.x},Y-{gridSize.y}").AddComponent<GridMap>();
 
-            ArrayLine<Cell>[] newGrid = new ArrayLine<Cell>[gridSize.x];
+            ArrayLine<CellBase>[] newGrid = new ArrayLine<CellBase>[gridSize.x];
             for (int x = 0; x < gridSize.x; x++)
             {
                 Transform parrentLine = new GameObject("Line " + x).transform;
                 parrentLine.parent = Map.transform;
-                newGrid[x].Values = new Cell[gridSize.y];
+                newGrid[x].Values = new CellBase[gridSize.y];
                 for (int y = 0; y < gridSize.y; y++)
                 {
-                    Cell platform = CreateCell(cellTypes[x, y], x, y, middleOffset);
+                    CellBase platform = CreateCell(cellTypes[x, y], x, y, middleOffset);
                     platform.transform.parent = parrentLine;
                     newGrid[x].Values[y] = platform;
                     platform.SetCellIndex(new Vector2Int(x, y));
@@ -106,10 +132,10 @@ namespace MiniFarm.GridEditor
             EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
         }
 
-        private Cell CreateCell(CellType cellType, int gridX, int gridY, Vector3 spawnOffset)
+        private CellBase CreateCell(CellType cellType, int gridX, int gridY, Vector3 spawnOffset)
         {
             string findCellName = $"{NAME_CELL}_{cellType}";
-            Cell newCell = Object.Instantiate(Get<Cell>(findCellName));
+            CellBase newCell = Object.Instantiate(Get<CellBase>(findCellName));
             newCell.transform.position = new Vector3(gridX * OffsetCell, 0, gridY * OffsetCell) - spawnOffset;
             newCell.transform.parent = Map.transform;
             return newCell;
@@ -124,12 +150,12 @@ namespace MiniFarm.GridEditor
 
         private void LoadPrefabs()
         {
-            List<Cell> listCells = new List<Cell>();
+            List<CellBase> listCells = new List<CellBase>();
             string[] guids = AssetDatabase.FindAssets(NAME_CELL_LOAD, new[] { PATH_PREFABS_CELL });
             foreach (string guid in guids)
             {
                 string path = AssetDatabase.GUIDToAssetPath(guid);
-                Cell prefab = AssetDatabase.LoadAssetAtPath<Cell>(path);
+                CellBase prefab = AssetDatabase.LoadAssetAtPath<CellBase>(path);
 
                 if (prefab != null)
                     listCells.Add(prefab);
