@@ -68,9 +68,18 @@ namespace MiniFarm.GridEditor
 
             GridEditorExtension.MidlleText("GridMap", 15, 5);
             DrawPreviewGrid();
+            UpdateSizeWindow();
         }
 
         #region Draw Preview Grid
+
+        private void UpdateSizeWindow()
+        {
+            Vector2Int size = new Vector2Int(_linesX.Length, _linesX[0].lineY.Length);
+            this.minSize = new Vector2(125 * (size.x + 1), 55 * (size.y + 1) + 300);
+            if (position.width != minSize.x || position.height != minSize.y)
+                position = new Rect(position.x, position.y, minSize.x, minSize.y);
+        }
 
         private CellType[,] ConvertPreviewGridToCellTypes()
         {
@@ -145,29 +154,60 @@ namespace MiniFarm.GridEditor
 
             for (int x = 0; x < _linesX.Length; x++)
             {
-                EditorGUILayout.Space(5);
-                EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
+                EditorGUILayout.Space(15);
+                EditorGUILayout.BeginHorizontal(GUILayout.Width(115));
 
                 for (int y = 0; y < _linesX[x].lineY.Length; y++)
                 {
-                    EditorGUILayout.BeginVertical(GUILayout.Width(60));
-
-                    Rect rect = GUILayoutUtility.GetRect(20, 20);
-                    EditorGUI.DrawRect(rect, GetCellColor(_linesX[x].lineY[y]));
+                    EditorGUILayout.BeginVertical();
+                    DrawCellTextWithLabelField(GUILayoutUtility.GetRect(115, 20), $"Cell: {_linesX[x].lineY[y]}", GetCellColor(_linesX[x].lineY[y]));
+                    EditorGUILayout.BeginHorizontal(GUILayout.Width(115));
 
                     _linesX[x].lineY[y] = (CellType)EditorGUILayout.EnumPopup(_linesX[x].lineY[y]);
-                    if(_gridCreator.Map != null && _gridCreator.Map.GetSize().x == _linesX.Length && _gridCreator.Map.GetSize().y == _linesX[x].lineY.Length)
-                    {
-                        CellBase cell = _gridCreator.Map.GetCells()[x].Values[y];
-                        CustomField(cell);
-                    }
+                    if(_gridCreator.Map != null)
+                        if (_gridCreator.Map.GetSize() == new Vector2Int(_linesX.Length, _linesX[x].lineY.Length))
+                            if (_linesX[x].lineY[y] == _gridCreator.Map.GetCells()[x].Values[y].CellType)
+                            {
+                                CellBase cell = _gridCreator.Map.GetCells()[x].Values[y];
+                                CustomField(cell);
+                            }
 
+                    EditorGUILayout.EndHorizontal();
+                    if (_gridCreator.Map != null)
+                        if (_gridCreator.Map.GetSize() == new Vector2Int(_linesX.Length, _linesX[x].lineY.Length))
+                                EditorGUILayout.ObjectField(_gridCreator.Map.GetCells()[x].Values[y], typeof(CellBase), true);
+ 
                     EditorGUILayout.EndVertical();
-                    EditorGUILayout.Space(5);
+                    EditorGUILayout.Space(15);
                 }
 
                 EditorGUILayout.EndHorizontal();
             }
+        }
+
+        private void DrawCellTextWithLabelField(Rect rect, string text, Color color)
+        {
+            Handles.color = color;
+            Handles.DrawSolidRectangleWithOutline(rect, color, color);
+
+            Rect textRect = new Rect(rect.x, rect.y , rect.width, rect.height);
+            Color originalBackgroundColor = GUI.backgroundColor;
+            GUI.backgroundColor = color;
+
+            Handles.BeginGUI();
+            EditorGUI.LabelField(textRect, text, GetLabelStyle());
+            Handles.EndGUI();
+
+            GUI.backgroundColor = originalBackgroundColor;
+        }
+
+        private GUIStyle GetLabelStyle()
+        {
+            GUIStyle style = new GUIStyle(EditorStyles.label);
+            style.alignment = TextAnchor.MiddleCenter;
+            style.normal.textColor = Color.black;
+            style.fontSize = 15;
+            return style;
         }
 
         private void CustomField(CellBase cell)
@@ -193,7 +233,7 @@ namespace MiniFarm.GridEditor
             {
                 CellType.Base => Color.white,
                 CellType.Player => Color.green,
-                CellType.Empty => Color.black,
+                CellType.Empty => Color.brown,
                 CellType.Finish => Color.blue,
                 CellType.Fruit => Color.yellow,
                 CellType.Trap => Color.red,
