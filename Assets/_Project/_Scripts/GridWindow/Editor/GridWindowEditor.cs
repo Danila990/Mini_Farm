@@ -77,7 +77,7 @@ namespace MiniFarm.GridEditor
         {
             Vector2Int size = new Vector2Int(_linesX.Length, _linesX[0].lineY.Length);
             this.minSize = new Vector2(125 * (size.x + 1), 55 * (size.y + 1) + 300);
-            if (position.width != minSize.x || position.height != minSize.y)
+            if (position.width < minSize.x || position.height < minSize.y)
                 position = new Rect(position.x, position.y, minSize.x, minSize.y);
         }
 
@@ -152,19 +152,18 @@ namespace MiniFarm.GridEditor
         {
             if (_linesX == null || _linesX.Length == 0) return;
 
+            EditorGUILayout.BeginHorizontal();
             for (int x = 0; x < _linesX.Length; x++)
             {
-                EditorGUILayout.Space(15);
-                EditorGUILayout.BeginHorizontal(GUILayout.Width(115));
-
-                for (int y = 0; y < _linesX[x].lineY.Length; y++)
+                EditorGUILayout.BeginVertical();
+                for (int y = _linesX[x].lineY.Length - 1; y >= 0 ; y--)
                 {
-                    EditorGUILayout.BeginVertical();
                     DrawCellTextWithLabelField(GUILayoutUtility.GetRect(115, 20), $"Cell: {_linesX[x].lineY[y]}", GetCellColor(_linesX[x].lineY[y]));
-                    EditorGUILayout.BeginHorizontal(GUILayout.Width(115));
 
+                    EditorGUILayout.BeginHorizontal();
                     _linesX[x].lineY[y] = (CellType)EditorGUILayout.EnumPopup(_linesX[x].lineY[y]);
-                    if(_gridCreator.Map != null)
+
+                    if (_gridCreator.Map != null)
                         if (_gridCreator.Map.GetSize() == new Vector2Int(_linesX.Length, _linesX[x].lineY.Length))
                             if (_linesX[x].lineY[y] == _gridCreator.Map.GetCells()[x].Values[y].CellType)
                             {
@@ -173,16 +172,18 @@ namespace MiniFarm.GridEditor
                             }
 
                     EditorGUILayout.EndHorizontal();
+
                     if (_gridCreator.Map != null)
                         if (_gridCreator.Map.GetSize() == new Vector2Int(_linesX.Length, _linesX[x].lineY.Length))
                                 EditorGUILayout.ObjectField(_gridCreator.Map.GetCells()[x].Values[y], typeof(CellBase), true);
- 
-                    EditorGUILayout.EndVertical();
-                    EditorGUILayout.Space(15);
+
+                    EditorGUILayout.Space(5);
                 }
 
-                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.Space(15);
             }
+            EditorGUILayout.EndHorizontal();
         }
 
         private void DrawCellTextWithLabelField(Rect rect, string text, Color color)
