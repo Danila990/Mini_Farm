@@ -11,6 +11,8 @@ namespace MiniFarm
     public interface IServiceInjector
     {
         public IServiceInjector Inject(object obj);
+        public IServiceInjector InjectMono(object obj);
+        public IServiceInjector InjectMono(MonoBehaviour obj);
     }
 
     public class ServiceInjector : IServiceInjector
@@ -22,6 +24,24 @@ namespace MiniFarm
         public ServiceInjector(IServiceContainer serviceContainer)
         {
             _container = serviceContainer;
+        }
+
+        public IServiceInjector InjectMono(object obj)
+        {
+            if(obj is MonoBehaviour)
+                return InjectMono(obj as MonoBehaviour);
+
+            Inject(obj);
+            return this;
+        }
+        public IServiceInjector InjectMono(MonoBehaviour behavior)
+        {
+            Inject(behavior);
+            var child = behavior.GetComponentsInChildren<MonoBehaviour>();
+            foreach (var mono in child)
+                Inject(mono);
+
+            return this;
         }
 
         public IServiceInjector Inject(object obj)

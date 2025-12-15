@@ -6,6 +6,7 @@ namespace MiniFarm
 {
     public class GameScope : ServiceScore
     {
+        [SerializeField] private GameSettings _gameSettings;
         [SerializeField] private GridMap _gridMap;
 
         [Header("Player")]
@@ -21,9 +22,19 @@ namespace MiniFarm
 
         protected override void BuildServices(IServiceContainer container)
         {
+            ServiceLocator.Set(_gameSettings);
             BuildGameManager(container);
             BuildGrid(container);
+            BuildLogick(container);
             BuildPlayerArrow(container);
+        }
+
+        private void BuildLogick(IServiceContainer container)
+        {
+            FruitCounter fruitCounter = _parrentScope.AddComponent<FruitCounter>();
+            LevelTimer timeCounter = _parrentScope.AddComponent<LevelTimer>();
+
+            container.Set(fruitCounter).Set(timeCounter);
         }
 
         private void BuildPlayerArrow(IServiceContainer container)

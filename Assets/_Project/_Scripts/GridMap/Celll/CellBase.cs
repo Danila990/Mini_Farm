@@ -16,8 +16,6 @@ namespace MiniFarm
 
         public virtual void Event() { }
 
-        public virtual void Restart() { }
-
         public void SetCellIndex(Vector2Int cellIndex) => _cellIndex = cellIndex;
     }
 }

@@ -47,7 +47,7 @@ namespace MiniFarm
             _isInjected = true;
 
             foreach (var service in _container.Services)
-                Injector.Inject(service);
+                Injector.InjectMono(service);
         }
 
         public static IServiceContainer Get<T>(out T service) where T : class => Container.Get<T>(out service);

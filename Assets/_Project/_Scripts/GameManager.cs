@@ -1,41 +1,32 @@
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace MiniFarm
 {
     public class GameManager : MonoBehaviour
     {
-        private IGridMap _gridMap;
         private Player _player;
-        private PlayerDirectionArrow _directionArrow;
         private IInputService _inputService;
+        private LevelTimer _timer;
 
         [Inject]
-        public void Setup(IGridMap gridMap, Player player, PlayerDirectionArrow playerDirectionArrow, IInputService inputService)
+        public void Setup(Player player, IInputService inputService, LevelTimer levelTimer)
         {
-            _gridMap = gridMap;
             _player = player;
-            _directionArrow = playerDirectionArrow;
             _inputService = inputService;
-        }
-
-        private void Start()
-        {
-            StartGame();
+            _timer = levelTimer;
         }
 
         public void StartGame()
         {
-            RestartGame();
+            _inputService.ActiveState(true);
             _player.StartPlayer();
-            PlayGame();
+            _timer.StartTimer();
         }
 
         public void RestartGame()
         {
-            _gridMap.ResetGrid();
-            _player.Restart();
-            _directionArrow.Restart();
+            ServiceLocator.ResetContainer();
+            SceneLoader.RestartScene();
         }
 
         public void PlayGame()
@@ -46,14 +37,12 @@ namespace MiniFarm
 
         public void PauseGame()
         {
-            _inputService.ActiveState(false);
             Time.timeScale = 0;
         }
 
         public void LossGame()
         {
             RestartGame();
-            //PauseGame();
         }
 
         public void WinGame()

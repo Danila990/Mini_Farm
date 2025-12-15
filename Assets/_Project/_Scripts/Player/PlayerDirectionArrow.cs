@@ -27,12 +27,6 @@ namespace MiniFarm
             transform.position = position;
         }
 
-        public void Restart()
-        {
-            _rotate.ResetRotate();
-            Update();
-        }
-
         public void InputDirection(Direction direction)
         {
             if (!_rotate.isRotated)

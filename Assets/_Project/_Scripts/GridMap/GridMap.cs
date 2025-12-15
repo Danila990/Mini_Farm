@@ -13,13 +13,6 @@ namespace MiniFarm
 
         public Vector2Int GetSize() => _array.SizeGrid;
 
-        public void ResetGrid()
-        {
-            foreach (var cellLine in _array.GetAll())
-                foreach(var cell in cellLine.Values)
-                    cell.Restart();
-        }
-
         public bool CheckCell(Vector2Int cellIndex) => _array.Check(cellIndex.x, cellIndex.y);
 
         public ICell GetCell(Vector2Int cellIndex) => _array.Get(cellIndex.x, cellIndex.y);

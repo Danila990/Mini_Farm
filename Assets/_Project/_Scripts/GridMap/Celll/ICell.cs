@@ -10,6 +10,5 @@ namespace MiniFarm
         public Vector3 MovePos { get; }
         public bool IsLocked { get; }
         public void Event();
-        public void Restart();
     }
 }

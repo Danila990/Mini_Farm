@@ -16,10 +16,5 @@ namespace MiniFarm
 
             fruit.DisableFruit();
         }
-
-        public override void Restart()
-        {
-            fruit.gameObject.SetActive(true);
-        }
     }
 }
