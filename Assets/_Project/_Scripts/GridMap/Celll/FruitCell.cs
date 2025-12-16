@@ -6,6 +6,8 @@ namespace MiniFarm
     {
         [field: SerializeField] public Fruit fruit { get; private set; }
 
+        [Inject] private FruitController _fruitController;
+
         public override CellType CellType => CellType.Fruit;
 
         public void SetFruit(Fruit fruit) => this.fruit = fruit;
@@ -15,6 +17,7 @@ namespace MiniFarm
             if (!fruit.gameObject.activeInHierarchy) return;
 
             fruit.DisableFruit();
+            _fruitController.FruitUp(fruit.fruitType);
         }
     }
 }

@@ -7,23 +7,23 @@ namespace MiniFarm
     {
         [SerializeField] private TMP_Text _text;
 
-        private FruitCounter _fruitCounter;
+        private FruitController _fruitController;
 
         private void Start()
         {
-            _fruitCounter = ServiceLocator.Get<FruitCounter>();
-            UpdateText(_fruitCounter.currentFruit, _fruitCounter.maxFruit);
-            _fruitCounter.OnFruit += UpdateText;
+            _fruitController = ServiceLocator.Get<FruitController>();
+            UpdateText(_fruitController.currentCountFruit);
+            _fruitController.OnFruit += UpdateText;
         }
 
         private void OnDestroy()
         {
-            _fruitCounter.OnFruit -= UpdateText;
+            _fruitController.OnFruit -= UpdateText;
         }
 
-        private void UpdateText(int count, int max)
+        private void UpdateText(int count)
         {
-            _text.text = $"{count}/{max}";
+            _text.text = $"{count}/{_fruitController.maxFruit}";
         }
     }
 }

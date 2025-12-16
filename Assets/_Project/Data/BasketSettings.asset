@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4759f7bf2604a1459ffae7bbecfea4a, type: 3}
+  m_Name: BasketSettings
+  m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.BasketSettings
+  _basketFruits:
+  - <fruitType>k__BackingField: 2
+    <fruitIcon>k__BackingField: {fileID: 62513078, guid: d8783b1ad309f134cb9c885cea9e376f, type: 3}
+  - <fruitType>k__BackingField: 0
+    <fruitIcon>k__BackingField: {fileID: 929796827, guid: d8783b1ad309f134cb9c885cea9e376f, type: 3}
+  - <fruitType>k__BackingField: 4
+    <fruitIcon>k__BackingField: {fileID: 780217400, guid: d8783b1ad309f134cb9c885cea9e376f, type: 3}
+  - <fruitType>k__BackingField: 3
+    <fruitIcon>k__BackingField: {fileID: -563815699, guid: d8783b1ad309f134cb9c885cea9e376f, type: 3}
+  - <fruitType>k__BackingField: 1
+    <fruitIcon>k__BackingField: {fileID: 1476467757, guid: d8783b1ad309f134cb9c885cea9e376f, type: 3}
+  <_buttonPrefab>k__BackingField: {fileID: 3922404747816341882, guid: c4eaf726c627c8747baf9eacd238437f, type: 3}

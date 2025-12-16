@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5094977354845504768}
   - component: {fileID: 8813976996991252062}
   - component: {fileID: 4432175955971376121}
+  - component: {fileID: 3922404747816341882}
   m_Layer: 0
   m_Name: Basket_Button
   m_TagString: Untagged
@@ -121,6 +122,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3922404747816341882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103267342117262888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db49c7537045e143b40ff013f032064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.BasketButton
+  _icon: {fileID: 8491144085624575422}
 --- !u!1 &2142994490671007271
 GameObject:
   m_ObjectHideFlags: 0

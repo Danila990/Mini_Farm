@@ -1,4 +1,3 @@
-using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,6 +7,7 @@ namespace MiniFarm
     {
         [SerializeField] private GameSettings _gameSettings;
         [SerializeField] private GridMap _gridMap;
+        [SerializeField] private BasketFruit _basketFruit;
 
         [Header("Player")]
         [SerializeField] private UserInput _userInput;
@@ -31,10 +31,10 @@ namespace MiniFarm
 
         private void BuildLogick(IServiceContainer container)
         {
-            FruitCounter fruitCounter = _parrentScope.AddComponent<FruitCounter>();
+            FruitController fruitController = _parrentScope.AddComponent<FruitController>();
             LevelTimer timeCounter = _parrentScope.AddComponent<LevelTimer>();
 
-            container.Set(fruitCounter).Set(timeCounter);
+            container.Set(fruitController).Set(timeCounter).Set(_basketFruit);
         }
 
         private void BuildPlayerArrow(IServiceContainer container)

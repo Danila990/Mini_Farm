@@ -36,9 +36,8 @@ namespace MiniFarm
         }
         public IServiceInjector InjectMono(MonoBehaviour behavior)
         {
-            Inject(behavior);
-            var child = behavior.GetComponentsInChildren<MonoBehaviour>();
-            foreach (var mono in child)
+            var behaviours = behavior.GetComponentsInChildren<MonoBehaviour>();
+            foreach (var mono in behaviours)
                 Inject(mono);
 
             return this;
