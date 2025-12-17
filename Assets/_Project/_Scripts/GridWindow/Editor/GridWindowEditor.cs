@@ -217,7 +217,7 @@ namespace MiniFarm.GridEditor
             {
                 FruitCell fruitCell = cell as FruitCell;
                 FruitType newType = (FruitType)EditorGUILayout.EnumPopup(fruitCell.fruit.fruitType);
-                 _gridCreator.ChangeFruit(newType, fruitCell);
+                _gridCreator.ChangeFruit(newType, fruitCell);
             }
             else if(cell as TrapCell)
             {

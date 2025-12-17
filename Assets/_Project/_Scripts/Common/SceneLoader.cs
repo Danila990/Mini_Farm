@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MiniFarm
 {
@@ -8,6 +9,7 @@ namespace MiniFarm
         {
             if(SceneManager.sceneCountInBuildSettings <= indexLoad) return;
 
+            Time.timeScale = 1.0f;
             SceneManager.LoadScene(indexLoad);
         }
 

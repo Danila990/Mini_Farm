@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 3991960363476391819}
   - component: {fileID: 8606688386432753436}
   m_Layer: 0
-  m_Name: TapStart
+  m_Name: Game_TapStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
