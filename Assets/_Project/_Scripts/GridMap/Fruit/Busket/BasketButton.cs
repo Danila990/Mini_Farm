@@ -25,6 +25,7 @@ namespace MiniFarm
         
         protected override void OnClick()
         {
+            ServiceLocator.Resolver.Resolve<AudioSystem>().Play("ButtonClick");
             _basketFruit.ChangeFruitButton(fruitType);
         }
     }

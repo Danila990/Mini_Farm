@@ -28,6 +28,7 @@ namespace MiniFarm
             {
                 currentCountFruit--;
                 OnFruit?.Invoke(currentCountFruit);
+                ServiceLocator.Resolver.Resolve<AudioSystem>().Play("FruitUp");
             }
             else
                 ServiceLocator.Resolver.Resolve<GameManager>().LossGame();

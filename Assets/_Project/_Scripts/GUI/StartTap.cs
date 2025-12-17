@@ -10,6 +10,7 @@ namespace MiniFarm
         {
             gameObject.SetActive(false);
             _nextPanel.SetActive(true);
+            ServiceLocator.Resolver.Resolve<AudioSystem>().Play("ButtonClick");
             ServiceLocator.Resolver.Resolve<GameManager>().StartGame();
         }
     }

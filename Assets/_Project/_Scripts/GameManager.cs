@@ -41,11 +41,13 @@ namespace MiniFarm
 
         public void LossGame()
         {
+            ServiceLocator.Resolver.Resolve<AudioSystem>().Play("Loss");
             RestartGame();
         }
 
         public void WinGame()
         {
+            ServiceLocator.Resolver.Resolve<AudioSystem>().Play("Win");
             RestartGame();
         }
     }
