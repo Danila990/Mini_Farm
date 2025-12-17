@@ -7,13 +7,15 @@ namespace MiniFarm
         private Player _player;
         private IInputService _inputService;
         private LevelTimer _timer;
+        private WindowController _windowController;
 
         [Inject]
-        public void Setup(Player player, IInputService inputService, LevelTimer levelTimer)
+        public void Setup(Player player, IInputService inputService, LevelTimer levelTimer, WindowController window)
         {
             _player = player;
             _inputService = inputService;
             _timer = levelTimer;
+            _windowController = window;
         }
 
         public void StartGame()
@@ -42,13 +44,14 @@ namespace MiniFarm
         public void LossGame()
         {
             ServiceLocator.Resolver.Resolve<AudioSystem>().Play("Loss");
-            RestartGame();
+            _windowController.ShowWindow(WindowType.Game_Loss);
+            PauseGame();
         }
 
         public void WinGame()
         {
             ServiceLocator.Resolver.Resolve<AudioSystem>().Play("Win");
-            RestartGame();
+            _windowController.ShowWindow(WindowType.Game_Win);
         }
     }
 }

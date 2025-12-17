@@ -2,13 +2,14 @@ using UnityEngine;
 
 namespace MiniFarm
 {
+    [RequireComponent(typeof(AlphaAnimation))]
     public class Window : MonoBehaviour
     {
         [field: SerializeField] public WindowType windowType { get; private set; }
 
         private AlphaAnimation _alphaAnimator;
 
-        protected virtual void Awake()
+        public virtual void Setup()
         {
             _alphaAnimator = GetComponent<AlphaAnimation>();
         }

@@ -10,10 +10,9 @@ namespace MiniFarm
         private BasketButton[] _basketButton;
         private FruitController _fruitController;
 
-        [Inject]
-        public void Setup(FruitController fruitController)
+        private void Start()
         {
-            _fruitController = fruitController;
+            _fruitController = ServiceLocator.Resolver.Resolve<FruitController>();
             CreateButtons(_fruitController.GetActualFruitTypes());
             ChangeFruitButton(_fruitController.currentFruitType);
         }

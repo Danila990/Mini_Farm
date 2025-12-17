@@ -10,6 +10,8 @@ public class AlphaAnimation : MonoBehaviour
 
     private CanvasGroup _canvasGroup;
 
+    private Tween _tween;
+
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
@@ -22,13 +24,20 @@ public class AlphaAnimation : MonoBehaviour
     public void Show()
     {
         _canvasGroup.alpha = 0f;
-        Animation(_openDuration, 1);
+        _tween?.Kill();
+        _tween = Animation(_openDuration, 1);
     }
 
     public void Hide()
     {
-        Tween tween = Animation(_closeDuration, 0f);
-        tween.onKill += () => { gameObject.SetActive(false); };
+        _tween?.Kill();
+        _tween = Animation(_closeDuration, 0f);
+        _tween.onComplete += () => { gameObject.SetActive(false); };
+    }
+
+    private void OnDestroy()
+    {
+        _tween?.Kill();
     }
 
     private Tween Animation(float  duration, float targetAlpha)

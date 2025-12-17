@@ -3,17 +3,24 @@ using UnityEngine;
 
 namespace MiniFarm
 {
-    public class ScreneController : MonoBehaviour
+    public class WindowController : MonoBehaviour
     {
+        [SerializeField] private WindowType _startWindow;
         [SerializeField] private Window[] _windows;
 
         private Window _currentWindow;
+
+        private void Start()
+        {
+            ShowWindow(_startWindow);
+        }
 
         public void ShowWindow(WindowType pageType)
         {
             HideWindow();
 
-            GetWindow(pageType).Show();
+            _currentWindow = GetWindow(pageType);
+            _currentWindow.Show();
         }
 
         public void HideWindow()
@@ -30,6 +37,7 @@ namespace MiniFarm
         {
             Window returnWindow = _windows.FirstOrDefault(page => page.windowType == windowType);
             returnWindow = Instantiate(returnWindow, transform);
+            returnWindow.Setup();
             if (returnWindow == null)
                 Debug.LogError("Window find Error: " + windowType);
 
