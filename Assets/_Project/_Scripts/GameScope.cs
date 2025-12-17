@@ -1,9 +1,8 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace MiniFarm
 {
-    public class GameScope : ServiceScore
+    public class GameScope : ServiceLocator
     {
         [SerializeField] private GameSettings _gameSettings;
         [SerializeField] private GridMap _gridMap;
@@ -18,47 +17,32 @@ namespace MiniFarm
         private void OnValidate()
         {
             _gridMap ??= FindAnyObjectByType<GridMap>();
+            _basketFruit ??= FindAnyObjectByType<BasketFruit>();
         }
 
-        protected override void BuildServices(IServiceContainer container)
+        public override void Configurate(IBuilder builder)
         {
-            ServiceLocator.Set(_gameSettings);
-            BuildGameManager(container);
-            BuildGrid(container);
-            BuildLogick(container);
-            BuildPlayerArrow(container);
+            builder.Register(_gameSettings);
+            builder.Register<GameManager>();
+            builder.Register<IGridMap>(_gridMap);
+            builder.Register<FruitController>();
+            builder.Instantiate<LevelTimer>();
+            builder.Register(_basketFruit);
+
+            BuildInput(builder);
+            builder.Instantiate(_player);
+            builder.Instantiate(_playerArrow);
         }
 
-        private void BuildLogick(IServiceContainer container)
+        private void BuildInput(IBuilder builder)
         {
-            FruitController fruitController = _parrentScope.AddComponent<FruitController>();
-            LevelTimer timeCounter = _parrentScope.AddComponent<LevelTimer>();
 
-            container.Set(fruitController).Set(timeCounter).Set(_basketFruit);
-        }
-
-        private void BuildPlayerArrow(IServiceContainer container)
-        {
-            IInputService inputService = _userInput switch
+            switch (_userInput)
             {
-                _ or UserInput.Mobile => _parrentScope.AddComponent<KeybordInput>(),
-            };
-
-            _player = Instantiate(_player);
-            _playerArrow = Instantiate(_playerArrow);
-
-            container.Set<IInputService>(inputService).Set(_player).Set(_playerArrow);
-        }
-
-        private void BuildGrid(IServiceContainer container)
-        {
-            container.Set<IGridMap>(_gridMap);
-        }
-
-        private void BuildGameManager(IServiceContainer container)
-        {
-            GameManager gameManager = _parrentScope.AddComponent<GameManager>();
-            container.Set(gameManager);
+                case _ or UserInput.Pc:
+                    builder.Instantiate<KeybordInput, IInputService>();
+                    break;
+            }
         }
     }
 }

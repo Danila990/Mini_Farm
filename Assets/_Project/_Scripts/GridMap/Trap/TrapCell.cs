@@ -13,7 +13,7 @@ namespace MiniFarm
         public override void Event()
         {
             if(trap.IsActive())
-                ServiceLocator.Get<GameManager>().LossGame();
+                ServiceLocator.Resolver.Resolve<GameManager>().LossGame();
         }
     }
 }

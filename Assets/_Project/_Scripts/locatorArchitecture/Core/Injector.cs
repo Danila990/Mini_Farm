@@ -8,33 +8,33 @@ namespace MiniFarm
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Method | AttributeTargets.Property)]
     public sealed class InjectAttribute : PropertyAttribute { }
 
-    public interface IServiceInjector
+    public interface IInjector
     {
-        public IServiceInjector Inject(object obj);
-        public IServiceInjector InjectMono(object obj);
-        public IServiceInjector InjectMono(MonoBehaviour obj);
+        public IInjector Inject(object obj);
+        public IInjector InjectMono(object obj);
+        public IInjector InjectMono(MonoBehaviour obj);
     }
 
-    public class ServiceInjector : IServiceInjector
+    public class Injector : IInjector
     {
         private const BindingFlags BINDING_FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy;
 
-        private readonly IServiceContainer _container;
+        private readonly IContainerResolver _resolver;
 
-        public ServiceInjector(IServiceContainer serviceContainer)
+        public Injector(IContainerResolver resolver)
         {
-            _container = serviceContainer;
+            _resolver = resolver;
         }
 
-        public IServiceInjector InjectMono(object obj)
+        public IInjector InjectMono(object obj)
         {
-            if(obj is MonoBehaviour)
-                return InjectMono(obj as MonoBehaviour);
+            if (obj is MonoBehaviour monoBehaviour )
+                return InjectMono(monoBehaviour);
 
             Inject(obj);
             return this;
         }
-        public IServiceInjector InjectMono(MonoBehaviour behavior)
+        public IInjector InjectMono(MonoBehaviour behavior)
         {
             var behaviours = behavior.GetComponentsInChildren<MonoBehaviour>();
             foreach (var mono in behaviours)
@@ -43,7 +43,7 @@ namespace MiniFarm
             return this;
         }
 
-        public IServiceInjector Inject(object obj)
+        public IInjector Inject(object obj)
         {
             if (!IsInjectable(obj)) return this;
 
@@ -55,6 +55,7 @@ namespace MiniFarm
             return this;
         }
 
+        #region InjectionLogick
         private void InjectFields(Type type, object instance)
         {
             var injectableFields = type.GetFields(BINDING_FLAGS)
@@ -64,12 +65,12 @@ namespace MiniFarm
             {
                 if (injectableField.GetValue(instance) != null)
                 {
-                    Debug.LogWarning($"[ServiceInjector] Field '{injectableField.Name}' of class '{type.Name}' is already set.");
+                    Debug.LogWarning($"[Injector] Field '{injectableField.Name}' of class '{type.Name}' is already set.");
                     continue;
                 }
 
                 var fieldType = injectableField.FieldType;
-                var resolvedInstance = _container.Get<object>(fieldType);
+                var resolvedInstance = _resolver.Resolve<object>(fieldType);
                 if (resolvedInstance == null)
                     throw new Exception($"Failed to inject into field '{injectableField.Name}' of class '{type.Name}'.");
 
@@ -78,7 +79,7 @@ namespace MiniFarm
         }
 
         private void InjectMethods(Type type, object instance)
-        { 
+        {
             var injectableMethods = type.GetMethods(BINDING_FLAGS)
                 .Where(member => Attribute.IsDefined(member, typeof(InjectAttribute)));
 
@@ -87,7 +88,7 @@ namespace MiniFarm
                 var requiredParameters = injectableMethod.GetParameters()
                     .Select(parameter => parameter.ParameterType)
                     .ToArray();
-                var resolvedInstances = requiredParameters.Select(_container.Get<object>).ToArray();
+                var resolvedInstances = requiredParameters.Select(_resolver.Resolve<object>).ToArray();
                 if (resolvedInstances.Any(resolvedInstance => resolvedInstance == null))
                     throw new Exception($"Failed to inject into method '{injectableMethod.Name}' of class '{type.Name}'.");
 
@@ -103,7 +104,7 @@ namespace MiniFarm
             foreach (var injectableProperty in injectableProperties)
             {
                 var propertyType = injectableProperty.PropertyType;
-                var resolvedInstance = _container.Get<object>(propertyType);
+                var resolvedInstance = _resolver.Resolve<object>(propertyType);
                 if (resolvedInstance == null)
                     throw new Exception($"Failed to inject into property '{injectableProperty.Name}' of class '{type.Name}'.");
 
@@ -116,5 +117,6 @@ namespace MiniFarm
             var members = obj.GetType().GetMembers(BINDING_FLAGS);
             return members.Any(member => Attribute.IsDefined(member, typeof(InjectAttribute)));
         }
+        #endregion
     }
 }

@@ -10,7 +10,7 @@ namespace MiniFarm
         {
             gameObject.SetActive(false);
             _nextPanel.SetActive(true);
-            ServiceLocator.Get<GameManager>().StartGame();
+            ServiceLocator.Resolver.Resolve<GameManager>().StartGame();
         }
     }
 }

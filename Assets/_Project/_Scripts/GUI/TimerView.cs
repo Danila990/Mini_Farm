@@ -11,7 +11,7 @@ namespace MiniFarm
 
         private void Start()
         {
-            _levelTimer = ServiceLocator.Get<LevelTimer>();
+            _levelTimer = ServiceLocator.Resolver.Resolve<LevelTimer>();
             UpdateText(_levelTimer.time);
             _levelTimer.OnTime += UpdateText;
         }

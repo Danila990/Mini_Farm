@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MiniFarm
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager
     {
         private Player _player;
         private IInputService _inputService;
@@ -25,7 +25,6 @@ namespace MiniFarm
 
         public void RestartGame()
         {
-            ServiceLocator.ResetContainer();
             SceneLoader.RestartScene();
         }
 

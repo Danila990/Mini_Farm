@@ -11,7 +11,7 @@ namespace MiniFarm
 
         private void Start()
         {
-            _fruitController = ServiceLocator.Get<FruitController>();
+            _fruitController = ServiceLocator.Resolver.Resolve<FruitController>();
             UpdateText(_fruitController.currentCountFruit);
             _fruitController.OnFruit += UpdateText;
         }

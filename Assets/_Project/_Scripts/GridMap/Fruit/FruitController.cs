@@ -1,10 +1,9 @@
 using System;
 using System.Linq;
-using UnityEngine;
 
 namespace MiniFarm
 {
-    public class FruitController : MonoBehaviour
+    public class FruitController
     {
         public event Action<int> OnFruit;
 
@@ -31,13 +30,13 @@ namespace MiniFarm
                 OnFruit?.Invoke(currentCountFruit);
             }
             else
-                ServiceLocator.Get<GameManager>().LossGame();
+                ServiceLocator.Resolver.Resolve<GameManager>().LossGame();
         }
 
         public void CheckWinGame()
         {
             if(currentCountFruit <= 0)
-                ServiceLocator.Get<GameManager>().WinGame();
+                ServiceLocator.Resolver.Resolve<GameManager>().WinGame();
         }
 
         public FruitType[] GetActualFruitTypes()
