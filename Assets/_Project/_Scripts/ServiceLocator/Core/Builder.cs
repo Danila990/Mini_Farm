@@ -30,14 +30,14 @@ namespace MiniFarm
 
         public void Instantiate<T>(Transform parrent = null) where T : MonoBehaviour
         {
-            T newMono = new GameObject(nameof(T)).AddComponent<T>();
+            T newMono = new GameObject(typeof(T).Name).AddComponent<T>();
             newMono.transform.parent = parrent;
             _register.Register<T>(newMono);
         }
 
         public void Instantiate<T,I>(Transform parrent = null) where T : MonoBehaviour, I where I : class
         {
-            T newMono = new GameObject(nameof(T)).AddComponent<T>();
+            T newMono = new GameObject(typeof(T).Name).AddComponent<T>();
             newMono.transform.parent = parrent;
 
             if (newMono is I)

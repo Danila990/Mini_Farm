@@ -477,7 +477,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5544036294303629219}
   - component: {fileID: 4595184107406744638}
-  - component: {fileID: 2430979788269718159}
+  - component: {fileID: 288898351194278678}
+  - component: {fileID: 4751360233240066789}
   m_Layer: 0
   m_Name: Game_GUI
   m_TagString: Untagged
@@ -521,7 +522,22 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &2430979788269718159
+--- !u!114 &288898351194278678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240480946672887345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87268933caa01f4390c80b4daf4d874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlphaAnimation
+  _playInStart: 0
+  _openDuration: 0.5
+  _closeDuration: 0.5
+--- !u!114 &4751360233240066789
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -975,6 +991,7 @@ GameObject:
   - component: {fileID: 1003052089193354145}
   - component: {fileID: 652511912410762141}
   - component: {fileID: 6897882105596046135}
+  - component: {fileID: 5721339802859008364}
   m_Layer: 0
   m_Name: Pause_Button
   m_TagString: Untagged
@@ -1083,3 +1100,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5721339802859008364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9095967478996634663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dccde44e82262040bb6bc7290c065e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.ShowWindowButton
+  _openWindow: 5

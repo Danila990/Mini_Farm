@@ -6,35 +6,39 @@ namespace MiniFarm
     public class Fruit : MonoBehaviour
     {
         [SerializeField] private ParticleSystem _deactivateEffect;
-        [SerializeField] private float _targety = 2f;
-        [SerializeField] private float _duraction = 0.5f;
+        [SerializeField] private float _moveOffsetY = 2f;
+        [SerializeField] private float _moveDuration = 0.5f;
+        [SerializeField] private float _rotateDuration= 2f;
 
         [field: SerializeField] public FruitType fruitType { get; private set; }
 
-        private Tween _animTween;
-
         private void Awake()
         {
-            _animTween = transform.DOMoveY(_targety, _duraction)
-                .SetLoops(-1, LoopType.Yoyo);
+            transform.DOMoveY(_moveOffsetY, _moveDuration).
+                SetLoops(-1, LoopType.Yoyo);
+
+            transform.DORotate(new Vector3(0, -360f, 0), _rotateDuration, RotateMode.FastBeyond360)
+                .SetEase(Ease.Linear)
+                .SetLoops(-1)
+                .SetRelative();
         }
 
         private void OnEnable()
         {
-            _animTween.Play();
+            DOTween.Play(transform);
         }
 
         public void DisableFruit()
         {
             var effect = Instantiate(_deactivateEffect, transform.position, Quaternion.identity);
             Destroy(effect.gameObject, 0.5f);
-            _animTween.Pause();
+            DOTween.Pause(transform);
             gameObject.SetActive(false);
         }
 
         private void OnDestroy()
         {
-            _animTween?.Kill();
+            DOTween.Kill(transform);
         }
     }
 }

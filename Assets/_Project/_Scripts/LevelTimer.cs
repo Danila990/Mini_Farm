@@ -28,6 +28,8 @@ namespace MiniFarm
                 yield return new WaitForSeconds(1f);
                 time--;
                 OnTime?.Invoke(time);
+                if(time <= 0 )
+                    ServiceLocator.Resolver.Resolve<GameManager>().LossGame();
             }
         }
     }

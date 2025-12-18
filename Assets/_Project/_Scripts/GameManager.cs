@@ -38,6 +38,7 @@ namespace MiniFarm
 
         public void PauseGame()
         {
+            _inputService.ActiveState(false);
             Time.timeScale = 0;
         }
 

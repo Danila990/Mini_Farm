@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.Fruit
   _deactivateEffect: {fileID: 198157190901592544, guid: f170768d28f43a346bb3e3aedc8e67b9, type: 3}
-  _targety: 2
-  _duraction: 0.5
+  _moveOffsetY: 2
+  _moveDuration: 0.5
+  _rotateDuration: 3
   <fruitType>k__BackingField: 2
