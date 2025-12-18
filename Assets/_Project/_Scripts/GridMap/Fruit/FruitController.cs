@@ -34,10 +34,12 @@ namespace MiniFarm
                 ServiceLocator.Resolver.Resolve<GameManager>().LossGame();
         }
 
-        public void CheckWinGame()
+        public bool CheckWinGame()
         {
             if(currentCountFruit <= 0)
-                ServiceLocator.Resolver.Resolve<GameManager>().WinGame();
+                return true;
+
+            return false;
         }
 
         public FruitType[] GetActualFruitTypes()

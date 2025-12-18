@@ -53,6 +53,7 @@ namespace MiniFarm
         {
             ServiceLocator.Resolver.Resolve<AudioSystem>().Play("Win");
             _windowController.ShowWindow(WindowType.Game_Win);
+            PauseGame();
         }
     }
 }
