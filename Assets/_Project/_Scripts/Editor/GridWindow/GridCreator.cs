@@ -73,6 +73,8 @@ namespace MiniFarm.GridEditor
                 {
                     Fruit newFruit = Object.Instantiate(prefab, fruitCell.transform);
                     fruitCell.SetFruit(newFruit);
+                    Undo.RegisterCreatedObjectUndo(fruitCell.fruit.gameObject, "Change Fruit");
+                    EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
                     return;
                 }
             }
@@ -98,6 +100,8 @@ namespace MiniFarm.GridEditor
                 {
                     Trap newFruit = Object.Instantiate(prefab, trapCell.transform);
                     trapCell.SetTrap(newFruit);
+                    Undo.RegisterCreatedObjectUndo(trapCell.trap.gameObject, "Change trap");
+                    EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
                     return;
                 }
             }
