@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using YG;
 
 namespace MiniFarm
 {
@@ -9,7 +9,7 @@ namespace MiniFarm
         private void Start()
         {
             var buttons = GetComponentsInChildren<LoadSceneButton>();
-            for (int i = 0; i < SceneManager.sceneCountInBuildSettings - 1; i++)
+            for (int i = 0; i < YG2.saves.currentLevel; i++)
             {
                 buttons[i].GetComponent<Button>().interactable = true;
                 buttons[i].SetIndex(i + 1);

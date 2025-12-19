@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using YG;
 
 namespace MiniFarm
 {
@@ -51,6 +53,13 @@ namespace MiniFarm
 
         public void WinGame()
         {
+            int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            if (sceneIndex < SceneManager.sceneCountInBuildSettings - 1 && YG2.saves.currentLevel <= sceneIndex)
+            {
+                YG2.saves.currentLevel = sceneIndex + 1;
+                YG2.SaveProgress();
+            }
+
             ServiceLocator.Resolver.Resolve<AudioSystem>().Play("Win");
             _windowController.ShowWindow(WindowType.Game_Win);
             PauseGame();
