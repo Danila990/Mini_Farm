@@ -12,9 +12,9 @@ namespace MiniFarm
 
         public override void Configurate(IBuilder builder)
         {
-            builder.Instantiate<FPSCounter>();
+            builder.RegisteNewGameobject<FPSCounter>();
             builder.Register(_windowController);
-            builder.Instantiate(_audioSystem);
+            builder.RegisterInstantiate(_audioSystem);
         }
     }
 }

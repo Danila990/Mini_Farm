@@ -11,9 +11,9 @@ namespace MiniFarm
         public int time {  get; private set; }
 
         [Inject]
-        public void Setup(GameSettings gameSettings)
+        public void Setup(LevelData level)
         {
-            time = gameSettings.levelDuration;
+            time = level.levelDuration;
         }
 
         public void StartTimer()

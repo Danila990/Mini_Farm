@@ -1,5 +1,4 @@
-﻿using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 
 namespace MiniFarm
 {
@@ -9,7 +8,8 @@ namespace MiniFarm
         {
             base.Start();
 
-            if (SceneManager.sceneCountInBuildSettings - 1 == SceneManager.GetActiveScene().buildIndex)
+            int levelCount = ServiceLocator.Resolver.Resolve<LevelSettings>().LevelCount;
+            if (levelCount == SceneLoader.СurrentLevel)
                 GetComponent<Button>().interactable = false;
         }
 

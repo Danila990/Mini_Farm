@@ -38,7 +38,7 @@ namespace MiniFarm
             _style.fontStyle = FontStyle.Bold;
             _style.normal.textColor = _normalColor;
 
-            int padding = 10;
+            int padding = 75;
             _rect = new Rect(padding, padding, Screen.width - padding * 2, Screen.height - padding * 2);
         }
 

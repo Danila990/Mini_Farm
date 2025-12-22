@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using YG;
 
 namespace MiniFarm
@@ -53,8 +52,9 @@ namespace MiniFarm
 
         public void WinGame()
         {
-            int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-            if (sceneIndex < SceneManager.sceneCountInBuildSettings - 1 && YG2.saves.currentLevel <= sceneIndex)
+            int sceneIndex = SceneLoader.ÑurrentLevel;
+            int countLevels = ServiceLocator.Resolver.Resolve<LevelSettings>().LevelCount;
+            if (sceneIndex < countLevels - 1 && YG2.saves.currentLevel <= sceneIndex)
             {
                 YG2.saves.currentLevel = sceneIndex + 1;
                 YG2.SaveProgress();

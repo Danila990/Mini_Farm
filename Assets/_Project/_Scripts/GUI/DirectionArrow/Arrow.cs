@@ -23,7 +23,7 @@ namespace MiniFarm
 
         protected override void OnClick()
         {
-            _directionArrow.InputDirection(direction);
+            _directionArrow.ClickArrow(direction);
         }
     }
 }

@@ -4,47 +4,58 @@ namespace MiniFarm
 {
     public class GameScope : ServiceLocator
     {
+        [Space(5)]
         [Header("Scope")]
-        [SerializeField] private WindowController _windowController;
         [SerializeField] private AudioSystem _audioSystem;
-        [SerializeField] private GameSettings _gameSettings;
-        [SerializeField] private GridMap _gridMap;
+
+        [Header("Ui")]
+        [SerializeField] private WindowController _windowController;
+        
+        [Header("Grid")]
+        [SerializeField] private LevelSettings _levelSetting;
 
         [Header("Player")]
         [SerializeField] private UserInput _userInput;
         [SerializeField] private Player _player;
         [SerializeField] private PlayerDirectionArrow _playerArrow;
 
-
-        private void OnValidate()
-        {
-            _gridMap ??= FindAnyObjectByType<GridMap>();
-        }
-
         public override void Configurate(IBuilder builder)
         {
-            builder.Instantiate<FPSCounter>();
-            builder.Instantiate(_audioSystem);
-            builder.Register(_gameSettings);
-            builder.Register(_windowController);
-            builder.Register<GameManager>();
-            builder.Register<IGridMap>(_gridMap);
-            builder.Register<FruitController>();
-            builder.Instantiate<LevelTimer>();
-
-            BuildInput(builder);
-            builder.Instantiate(_player);
-            builder.Instantiate(_playerArrow);
+            builder.RegisteNewGameobject<FPSCounter>();
+            builder.RegisterInstantiate(_audioSystem);
+            builder.RegisterNewClass<GameManager>();
+            BuildUI(builder);
+            BuildLevel(builder);
+            BuildPlayer(builder);
         }
 
-        private void BuildInput(IBuilder builder)
+        private void BuildLevel(IBuilder builder)
+        {
+            LevelData levelData = _levelSetting.GetLevelData(SceneLoader.ÑurrentLevel);
+
+            builder.RegisterInstantiate(_levelSetting);
+            builder.RegisterInstantiate(levelData);
+            builder.RegisterInstantiate<GridMap, IGridMap>(levelData.gridMap);
+            builder.RegisterNewClass<FruitController>();
+            builder.RegisteNewGameobject<LevelTimer>();
+        }
+
+        private void BuildUI(IBuilder builder)
+        {
+            builder.Register(_windowController);
+        }
+
+        private void BuildPlayer(IBuilder builder)
         {
             switch (_userInput)
             {
                 case _ or UserInput.Pc:
-                    builder.Instantiate<KeybordInput, IInputService>();
+                    builder.RegisteNewGameobject<KeybordInput, IInputService>();
                     break;
             }
+
+            builder.RegisterInstantiate(_player);
+            builder.RegisterInstantiate(_playerArrow);
         }
     }
 }

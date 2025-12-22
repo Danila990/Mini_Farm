@@ -107,13 +107,15 @@ namespace MiniFarm.GridEditor
             }
         }
 
-
+        private const string PATH_PREFABS_GRID = "Assets/_Project/Prefabs/Traps";
+        private const string NAME_GRID_LOAD = "t:prefab";
         private void CreateNewGrid(CellType[,] cellTypes)
         {
             Vector2Int gridSize = new Vector2Int(cellTypes.GetLength(0), cellTypes.GetLength(1));
             Vector3 middleOffset = MiddleOffest(OffsetCell, gridSize);
 
-            Map = new GameObject($"GridMap: X-{gridSize.x},Y-{gridSize.y}").AddComponent<GridMap>();
+            string[] guids = AssetDatabase.FindAssets(NAME_GRID_LOAD, new[] { PATH_PREFABS_GRID });
+            Map = new GameObject($"GridMap - {guids.Length}").AddComponent<GridMap>();
 
             ArrayLine<CellBase>[] newGrid = new ArrayLine<CellBase>[gridSize.x];
             for (int x = 0; x < gridSize.x; x++)

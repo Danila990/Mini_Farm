@@ -38,5 +38,12 @@ namespace MiniFarm
         }
 
         public virtual void Configurate(IBuilder builder) { }
+
+        private void OnDestroy()
+        {
+            _injector = null;
+            _builder = null;
+            _container = null;
+        }
     }
 }
