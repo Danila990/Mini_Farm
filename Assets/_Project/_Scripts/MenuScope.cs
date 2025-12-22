@@ -12,6 +12,7 @@ namespace MiniFarm
 
         public override void Configurate(IBuilder builder)
         {
+            builder.Instantiate<FPSCounter>();
             builder.Register(_windowController);
             builder.Instantiate(_audioSystem);
         }
