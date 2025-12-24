@@ -225,7 +225,6 @@ namespace MiniFarm.GridEditor
                 TrapType newType = (TrapType)EditorGUILayout.EnumPopup(trapCell.trap.trapType);
                 _gridCreator.ChangeTrap(newType, trapCell);
             }
-
         }
 
         private Color GetCellColor(CellType platformType)

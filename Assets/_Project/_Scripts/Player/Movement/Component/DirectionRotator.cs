@@ -18,6 +18,7 @@ namespace MiniFarm
             _target = target;
             _startDirection = startDirection;
             currentDirection = _startDirection;
+            ResetRotate();
         }
 
         public void ResetRotate()

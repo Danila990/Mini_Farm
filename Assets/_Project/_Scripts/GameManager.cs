@@ -54,9 +54,9 @@ namespace MiniFarm
         {
             int sceneIndex = SceneLoader.ÑurrentLevel;
             int countLevels = ServiceLocator.Resolver.Resolve<LevelSettings>().LevelCount;
-            if (sceneIndex < countLevels - 1 && YG2.saves.currentLevel <= sceneIndex)
+            if (sceneIndex < countLevels - 1 && YG2.saves.CurrentLevel <= sceneIndex)
             {
-                YG2.saves.currentLevel = sceneIndex + 1;
+                YG2.saves.CurrentLevel = sceneIndex + 1;
                 YG2.SaveProgress();
             }
 

@@ -7,7 +7,7 @@ namespace MiniFarm
         protected override void OnClick()
         {
             ServiceLocator.Resolver.Resolve<AudioSystem>().Play("ButtonClick");
-            SceneLoader.LoadScene(YG2.saves.currentLevel);
+            SceneLoader.LoadLevel(YG2.saves.CurrentLevel);
         }
     }
 }

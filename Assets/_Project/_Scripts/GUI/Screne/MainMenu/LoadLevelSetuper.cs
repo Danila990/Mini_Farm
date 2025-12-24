@@ -9,7 +9,7 @@ namespace MiniFarm
         private void Start()
         {
             var buttons = GetComponentsInChildren<LoadSceneButton>();
-            for (int i = 0; i < YG2.saves.currentLevel; i++)
+            for (int i = 0; i < YG2.saves.CurrentLevel; i++)
             {
                 buttons[i].GetComponent<Button>().interactable = true;
                 buttons[i].SetIndex(i + 1);

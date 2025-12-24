@@ -22,12 +22,12 @@ namespace MiniFarm
         public bool IsActived => _jumper.isMoved || _rotator.isRotated;
 
         [Inject]
-        public void Setup(IGridMap gridMap, IInputService inputService)
+        public void Setup(IGridMap gridMap, IInputService inputService, LevelData levelData)
         {
             _gridMap = gridMap;
             _animator = GetComponent<PlayerAnimator>();
             _jumper = new PlayerMover(transform, _jumpDuration, _animator);
-            _rotator = new DirectionRotator(_rotateDuration, _rotateTarget);
+            _rotator = new DirectionRotator(_rotateDuration, _rotateTarget, levelData.directionPlayer);
             inputService.RegistControllable(this);
 
             Restart();

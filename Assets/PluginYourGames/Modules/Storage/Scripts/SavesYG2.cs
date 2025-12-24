@@ -6,7 +6,8 @@ namespace YG
     {
         public int idSave;
 
-
-        public int currentLevel = 1;
+        public int CurrentLevel = 1;
+        public bool IsSoundMute = false;
+        public bool IsMusicMute = false;
     }
 }

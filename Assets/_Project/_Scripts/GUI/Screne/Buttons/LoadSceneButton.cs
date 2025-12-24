@@ -11,7 +11,7 @@ namespace MiniFarm
         protected override void OnClick()
         {
             ServiceLocator.Resolver.Resolve<AudioSystem>().Play("ButtonClick");
-            SceneLoader.LoadScene(sceneLoad);
+            SceneLoader.LoadLevel(sceneLoad);
         }
     }
 }

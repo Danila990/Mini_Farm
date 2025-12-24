@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 6697009348832506908}
   - component: {fileID: 1026706670204274442}
   - component: {fileID: 491172634820787066}
-  - component: {fileID: 196219389532825042}
+  - component: {fileID: 1952697290311600492}
   m_Layer: 0
   m_Name: Home_Button
   m_TagString: Untagged
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &196219389532825042
+--- !u!114 &1952697290311600492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -316,10 +316,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2732327248138287765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cdf313f79308fc4bb45c40e589c9260, type: 3}
+  m_Script: {fileID: 11500000, guid: f4205f171081bb749bc230204d1d00fb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.LoadSceneButton
-  <sceneLoad>k__BackingField: 0
+  m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.LoadMainMenuButton
 --- !u!1 &2923208916268127322
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,7 +770,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.65
+  m_fontSize: 55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

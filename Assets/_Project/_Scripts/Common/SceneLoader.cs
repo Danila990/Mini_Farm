@@ -26,21 +26,28 @@ namespace MiniFarm
 
         private static int _currentLevel = -1;
 
-        public static void LoadScene(int indexLoad)
+        public static void LoadLevel(int indexLoad)
         {
             _currentLevel = indexLoad;
             Time.timeScale = 1.0f;
-            SceneManager.LoadScene(indexLoad);
+            SceneManager.LoadScene(1);
+        }
+
+        public static void LoadMainMenu()
+        {
+            _currentLevel = 0;
+            Time.timeScale = 1.0f;
+            SceneManager.LoadScene(0);
         }
 
         public static void RestartScene()
         {
-            LoadScene(СurrentLevel);
+            LoadLevel(СurrentLevel);
         }
 
         public static void LoadNextScene()
         {
-            LoadScene(СurrentLevel + 1);
+            LoadLevel(СurrentLevel + 1);
         }
     }
 }

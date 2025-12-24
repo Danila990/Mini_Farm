@@ -11,10 +11,10 @@ namespace MiniFarm
         private Transform _target;
 
         [Inject]
-        public void Setup(Player player, IInputService inputService)
+        public void Setup(Player player, IInputService inputService, LevelData levelData)
         {
             _target = player.transform;
-            _rotate = new DirectionRotator(_rotateDuration, transform);
+            _rotate = new DirectionRotator(_rotateDuration, transform, levelData.directionPlayer);
             inputService.RegistControllable(this);
         }
 

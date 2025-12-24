@@ -23,6 +23,24 @@ namespace MiniFarm
                 {Direction.Right, Vector2Int.right},
         };
 
+        public static Direction ToDireciton(this Quaternion quaternion)
+        {
+            Quaternion normalized = quaternion.normalized;
+            float angle = normalized.eulerAngles.y;
+            angle = (angle % 360 + 360) % 360;
+
+            if (angle >= 315f || angle < 45f)
+                return Direction.Up;
+            if (angle >= 45f && angle < 135f)
+                return Direction.Right;
+            if (angle >= 135f && angle < 225f)
+                return Direction.Down;
+            if (angle >= 225f && angle < 315f)
+                return Direction.Left;
+
+            return Direction.None;
+        }
+
         public static Quaternion ToQuaternionY(this Direction directionType)
         {
             return directionType switch

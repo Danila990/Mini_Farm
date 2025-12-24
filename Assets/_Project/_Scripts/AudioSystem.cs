@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using YG;
 
 namespace MiniFarm
 {
@@ -18,6 +19,15 @@ namespace MiniFarm
         [SerializeField] private SoundData[] _sounds;
         [SerializeField] private AudioSource _sound;
         [SerializeField] private AudioSource _music;
+
+        public bool IsMusicMute => _music.mute;
+        public bool IsSoundMute => _sound.mute;
+
+        private void Start()
+        {
+            SetMusicMute(YG2.saves.IsMusicMute);
+            SetSoundMute(YG2.saves.IsSoundMute);
+        }
 
         public void SetSoundMute(bool mute)
         {
