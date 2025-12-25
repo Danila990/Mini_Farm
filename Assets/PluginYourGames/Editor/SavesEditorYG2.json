@@ -1,0 +1,14 @@
+{
+    "intExample": 5,
+    "strExample": "Hello!",
+    "boolExample": [
+        false,
+        false,
+        false,
+        false
+    ],
+    "idSave": 1,
+    "CurrentLevel": 12,
+    "IsSoundMute": false,
+    "IsMusicMute": false
+}

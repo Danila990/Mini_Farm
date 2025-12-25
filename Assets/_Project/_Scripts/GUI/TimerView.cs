@@ -23,7 +23,7 @@ namespace MiniFarm
 
         private void UpdateText(int time)
         {
-            if(time <= 5)
+            if(time <= 3)
                 _text.color = Color.red;
             _text.text = $"{time}";
         }
