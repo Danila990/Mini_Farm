@@ -6051,6 +6051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.GameScope
   _isAutoBuild: 1
+  _localizationContainer: {fileID: 11400000, guid: e3b97321290744a4b8dc30499f1c142d, type: 2}
   _audioSystem: {fileID: 8493346931457256487, guid: 019b0c489171e814a85a052b526793ac, type: 3}
   _windowController: {fileID: 700333799}
   _levelSetting: {fileID: 11400000, guid: 25d6e58fc8a87aa4cb5b349c67040322, type: 2}

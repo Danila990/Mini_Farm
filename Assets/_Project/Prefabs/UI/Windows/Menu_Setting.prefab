@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 5891337844564482015}
   - component: {fileID: 1097930279879059929}
   - component: {fileID: 13610929390997223}
+  - component: {fileID: 701019354455122331}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -532,6 +533,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &701019354455122331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4828771629050332231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b94ef2444cdac4fb2be7d3b482857e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.LocalicationText
+  _id: 4
 --- !u!1 &4887497118437471564
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,6 +886,7 @@ GameObject:
   - component: {fileID: 2223477872100614885}
   - component: {fileID: 7962616663356460055}
   - component: {fileID: 2333885298471753267}
+  - component: {fileID: 5842158683364126451}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -997,6 +1012,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5842158683364126451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6810991888204132533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b94ef2444cdac4fb2be7d3b482857e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.LocalicationText
+  _id: 3
 --- !u!1 &7783439293076573990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,6 +1036,7 @@ GameObject:
   - component: {fileID: 1418354275139575064}
   - component: {fileID: 87065976607551924}
   - component: {fileID: 3818499849315070971}
+  - component: {fileID: 1715688936180662495}
   m_Layer: 0
   m_Name: Levels_text
   m_TagString: Untagged
@@ -1133,6 +1162,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1715688936180662495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7783439293076573990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b94ef2444cdac4fb2be7d3b482857e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.LocalicationText
+  _id: 2
 --- !u!1 &8844297471281870158
 GameObject:
   m_ObjectHideFlags: 0

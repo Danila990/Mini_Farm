@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using YG;
 
 namespace MiniFarm
 {
@@ -8,9 +9,13 @@ namespace MiniFarm
     {
         [SerializeField] private TextInfo[] _infos;
 
-        public TextInfo GetText(int id)
+        public string GetText(int id)
         {
-            return _infos[id];
+            var text = _infos[id];
+            if (YG2.envir.language != "en")
+                return text.Ru;
+            else
+                return text.En;
         }
     }
 

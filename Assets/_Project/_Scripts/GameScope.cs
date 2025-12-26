@@ -6,6 +6,7 @@ namespace MiniFarm
     {
         [Space(5)]
         [Header("Scope")]
+        [SerializeField] private LocalizationContainer _localizationContainer;
         [SerializeField] private AudioSystem _audioSystem;
 
         [Header("Ui")]
@@ -21,8 +22,8 @@ namespace MiniFarm
 
         public override void Configurate(IBuilder builder)
         {
-            builder.RegisteNewGameobject<FPSCounter>();
             builder.RegisterInstantiate(_audioSystem);
+            builder.RegisterInstantiate(_localizationContainer);
             builder.RegisterNewClass<GameManager>();
             BuildUI(builder);
             BuildLevel(builder);
