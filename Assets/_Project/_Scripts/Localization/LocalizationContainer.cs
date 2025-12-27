@@ -8,11 +8,12 @@ namespace MiniFarm
     public class LocalizationContainer : ScriptableObject
     {
         [SerializeField] private TextInfo[] _infos;
+        [SerializeField] private bool _testEn = false;
 
         public string GetText(int id)
         {
             var text = _infos[id];
-            if (YG2.envir.language != "en")
+            if (YG2.envir.language != "en" && !_testEn)
                 return text.Ru;
             else
                 return text.En;

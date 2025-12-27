@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.LevelData
   <directionPlayer>k__BackingField: 2
   <levelNumber>k__BackingField: 3
-  <levelDuration>k__BackingField: 10
+  <levelDuration>k__BackingField: 11
   <gridMap>k__BackingField: {fileID: 5604326199137203938, guid: 55ffe0b271d488d40974c8ec23c764f8, type: 3}
