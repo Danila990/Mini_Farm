@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41ac392afb6c7854cac1f38c28a66f88, type: 3}
   m_Name: LevelData 6
   m_EditorClassIdentifier: Assembly-CSharp::MiniFarm.LevelData
-  <directionPlayer>k__BackingField: 0
+  <directionPlayer>k__BackingField: 4
   <levelNumber>k__BackingField: 6
-  <levelDuration>k__BackingField: 17
+  <levelDuration>k__BackingField: 19
   <gridMap>k__BackingField: {fileID: 6654886368628062245, guid: 90a371e13529d3a44a8619dffc4f3ea6, type: 3}
